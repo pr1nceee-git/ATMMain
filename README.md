@@ -22,7 +22,6 @@ public class FinalProject {
                 "[3] Display One Account\n" +
                 "[4] Display ALL Accounts\n" +
                 "[5] Transfer Money\n" +
-                "[6] Delete an Account\n" +
                 "[X] Exit\n\n" +
                 "Please select an option:"
             );
@@ -33,7 +32,7 @@ public class FinalProject {
             }
 
             // OPEN ACCOUNT
-            if (choice.equals("0")) {
+            if (choice.equals("1")) {
 
                 if (accountsCreated >= 2) {
                     JOptionPane.showMessageDialog(null,
@@ -68,7 +67,7 @@ public class FinalProject {
             }
 
             // DEPOSIT
-            if (choice.equals("1")) {
+            if (choice.equals("2")) {
 
                 int accIndex = display.chooseAccount(accountsCreated);
                 if (accIndex == -1) continue;
@@ -91,7 +90,7 @@ public class FinalProject {
             }
 
             // WITHDRAW
-            else if (choice.equals("2")) {
+            else if (choice.equals("3")) {
 
                 int accIndex = display.chooseAccount(accountsCreated);
                 if (accIndex == -1) continue;
@@ -114,7 +113,7 @@ public class FinalProject {
             }
 
             // DISPLAY ONE ACCOUNT
-            else if (choice.equals("3")) {
+            else if (choice.equals("4")) {
 
                 int accIndex = display.chooseAccount(accountsCreated);
                 if (accIndex == -1) continue;
@@ -123,12 +122,12 @@ public class FinalProject {
             }
 
             // DISPLAY ALL ACCOUNTS
-            else if (choice.equals("4")) {
+            else if (choice.equals("5")) {
                 display.showAllAccounts(accountNames, balances, accountsCreated);
             }
 
             // TRANSFER MONEY
-            else if (choice.equals("5")) {
+            else if (choice.equals("6")) {
 
                 if (accountsCreated < 2) {
                     JOptionPane.showMessageDialog(null,
@@ -164,39 +163,7 @@ public class FinalProject {
                 }
             }
 
-            // DELETE ACCOUNT
-            else if (choice.equals("6")) {
-
-                int accIndex = display.chooseSpecificAccount("Which account do you want to DELETE?");
-                if (accIndex == -1) continue;
-
-                int confirm = JOptionPane.showConfirmDialog(
-                        null,
-                        "Are you sure you want to delete:\n" +
-                        accountNames[accIndex] +
-                        "\nThis action cannot be undone.",
-                        "Confirm Delete",
-                        JOptionPane.YES_NO_OPTION
-                );
-
-                if (confirm == JOptionPane.YES_OPTION) {
-
-                    // Shift accounts after deletion
-                    if (accIndex == 0 && accountsCreated == 2) {
-                        accountNames[0] = accountNames[1];
-                        balances[0] = balances[1];
-                    }
-
-                    // Clear last account slot
-                    accountNames[accountsCreated - 1] = "<Empty>";
-                    balances[accountsCreated - 1] = 0.0;
-
-                    accountsCreated--;
-
-                    JOptionPane.showMessageDialog(null, "Account deleted successfully!");
-                }
-            }
-
+           
             // EXIT
             else if (choice.equalsIgnoreCase("X")) {
                 display.exitMessage();
