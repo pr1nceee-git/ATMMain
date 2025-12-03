@@ -16,12 +16,12 @@ public class FinalProject {
             choice = JOptionPane.showInputDialog(
                 "My ATotM Machine\n" +
                 "==== MAIN MENU ====\n" +
-                "[0] Open Account\n" +
-                "[1] Deposit\n" +
-                "[2] Withdraw\n" +
-                "[3] Display One Account\n" +
-                "[4] Display ALL Accounts\n" +
-                "[5] Transfer Money\n" +
+                "[1] Open Account\n" +
+                "[2] Deposit\n" +
+                "[3] Withdraw\n" +
+                "[4] Display One Account\n" +
+                "[5] Display ALL Accounts\n" +
+                "[6] Transfer Money\n" +
                 "[X] Exit\n\n" +
                 "Please select an option:"
             );
