@@ -19,9 +19,8 @@ public class FinalProject {
                 "[1] Open Account\n" +
                 "[2] Deposit\n" +
                 "[3] Withdraw\n" +
-                "[4] Display One Account\n" +
-                "[5] Display ALL Accounts\n" +
-                "[6] Transfer Money\n" +
+                "[4] Display ALL Accounts\n" +
+                "[5] Transfer Money\n" +
                 "[X] Exit\n\n" +
                 "Please select an option:"
             );
@@ -112,22 +111,13 @@ public class FinalProject {
                 }
             }
 
-            // DISPLAY ONE ACCOUNT
-            else if (choice.equals("4")) {
-
-                int accIndex = display.chooseAccount(accountsCreated);
-                if (accIndex == -1) continue;
-
-                display.showDetails(accountNames[accIndex], balances[accIndex]);
-            }
-
             // DISPLAY ALL ACCOUNTS
-            else if (choice.equals("5")) {
+            else if (choice.equals("4")) {
                 display.showAllAccounts(accountNames, balances, accountsCreated);
             }
 
             // TRANSFER MONEY
-            else if (choice.equals("6")) {
+            else if (choice.equals("5")) {
 
                 if (accountsCreated < 2) {
                     JOptionPane.showMessageDialog(null,
