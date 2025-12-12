@@ -15,7 +15,7 @@ public class FinalProject {
 
             choice = JOptionPane.showInputDialog(
                 "My ATotM Machine\n" +
-                "==== MAIN MENU ====\n" +
+                " MAIN MENU \n" +
                 "[1] Open Account\n" +
                 "[2] Deposit\n" +
                 "[3] Withdraw\n" +
@@ -72,17 +72,30 @@ public class FinalProject {
                 if (accIndex == -1) continue;
 
                 String inputAmount = JOptionPane.showInputDialog("Enter amount to deposit:");
-
                 if (inputAmount == null) continue;
 
                 try {
                     double amount = Double.parseDouble(inputAmount);
+
                     if (amount > 0) {
+
+                        if (!display.isDivisibleBy100(amount)) {
+                            display.notDivisibleBy100();
+                            continue;
+                        }
+
+                        if (!display.isWithinLimits(amount)) {
+                            display.amountOutOfRange();
+                            continue;
+                        }
+
                         balances[accIndex] += amount;
                         display.depositSuccess();
+
                     } else {
                         display.invalidAmount();
                     }
+
                 } catch (Exception e) {
                     display.invalidAmount();
                 }
@@ -95,17 +108,30 @@ public class FinalProject {
                 if (accIndex == -1) continue;
 
                 String inputAmount = JOptionPane.showInputDialog("Enter amount to withdraw:");
-
                 if (inputAmount == null) continue;
 
                 try {
                     double amount = Double.parseDouble(inputAmount);
+
                     if (amount > 0 && amount <= balances[accIndex]) {
+
+                        if (!display.isDivisibleBy100(amount)) {
+                            display.notDivisibleBy100();
+                            continue;
+                        }
+
+                        if (!display.isWithinLimits(amount)) {
+                            display.amountOutOfRange();
+                            continue;
+                        }
+
                         balances[accIndex] -= amount;
                         display.withdrawSuccess();
+
                     } else {
                         display.insufficientFunds();
                     }
+
                 } catch (Exception e) {
                     display.invalidAmount();
                 }
@@ -133,17 +159,28 @@ public class FinalProject {
                 String inputAmount = JOptionPane.showInputDialog(
                         "Enter amount to transfer from " +
                         accountNames[from] + " → " + accountNames[to] + ":");
-
                 if (inputAmount == null) continue;
 
                 try {
                     double amount = Double.parseDouble(inputAmount);
 
                     if (amount > 0 && amount <= balances[from]) {
+
+                        if (!display.isDivisibleBy100(amount)) {
+                            display.notDivisibleBy100();
+                            continue;
+                        }
+
+                        if (!display.isWithinLimits(amount)) {
+                            display.amountOutOfRange();
+                            continue;
+                        }
+
                         balances[from] -= amount;
                         balances[to] += amount;
 
                         display.transferSuccess(accountNames[from], accountNames[to], amount);
+
                     } else {
                         display.insufficientFunds();
                     }
@@ -153,7 +190,6 @@ public class FinalProject {
                 }
             }
 
-           
             // EXIT
             else if (choice.equalsIgnoreCase("X")) {
                 display.exitMessage();
